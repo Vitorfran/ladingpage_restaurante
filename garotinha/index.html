@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cardápio Digital - Garotinha</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section id="introducao" class="py-5 mb-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="position-relative">
+            <img src="img/promo.png" alt="Imagem de destaque" class="img-fluid rounded shadow-lg">
+            <div class="position-absolute bottom-0 start-0 p-3 m-3 rounded promo-badge">
+              <h4 class="mb-0">Promoção Especial</h4>
+              <p class="mb-0 small">Todos os dias até as 19h</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <h2 class="display-5 mb-3">Garotinha Lanches</h2>
+          <p class="lead mb-4">
+            Sabores autênticos e ingredientes selecionados para oferecer a melhor experiência gastronômica.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <span class="intro-badge"><i class="bi bi-star-fill me-2"></i>Qualidade Premium</span>
+            <span class="intro-badge"><i class="bi bi-clock-fill me-2"></i>Rápido Atendimento</span>
+            <span class="intro-badge"><i class="bi bi-coin me-2"></i>Preços Acessíveis</span>
+          </div>
+          <a href="#cardapio" class="btn btn-primary btn-lg px-4">
+            <i class="bi bi-menu-up me-2"></i>Ver Cardápio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="container py-4" id="cardapio">
+  <h1 class="text-center mb-4"><i class="bi bi-menu-button-wide me-2"></i>Cardápio Digital</h1>
+
+  <!-- Abas -->
+  <ul class="nav nav-tabs" id="cardapioTabs" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pizzas"><i class="bi bi-egg-fried me-2"></i>Pizzas</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#sanduiches"><i class="bi bi-bread-slice me-2"></i>Sanduíches</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#lanches"><i class="bi bi-egg me-2"></i>Lanches</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#coxinhas"><i class="bi bi-droplet me-2"></i>Coxinhas</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#petiscos"><i class="bi bi-basket me-2"></i>Petiscos</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#bebidas"><i class="bi bi-cup-straw me-2"></i>Bebidas</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#sobremesas"><i class="bi bi-cake me-2"></i>Sobremesas</button></li>
+  </ul>
+
+  <!-- Conteúdo das abas -->
+  <div class="tab-content mt-4">
+
+    <!-- Pizzas -->
+    <div class="tab-pane fade show active" id="pizzas">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+          <div class="card">
+            <h5>Mussarela</h5>
+            <p>R$ 34,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Pizza Mussarela', 34.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Calabresa</h5>
+            <p>R$ 34,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Pizza Calabresa', 34.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Frango com Catupiry</h5>
+            <p>R$ 39,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Pizza Frango c/ Catupiry', 39.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Quatro Queijos</h5>
+            <p>R$ 44,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Pizza Quatro Queijos', 44.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Portuguesa</h5>
+            <p>R$ 42,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Pizza Portuguesa', 42.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Margherita</h5>
+            <p>R$ 38,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Pizza Margherita', 38.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sanduíches -->
+    <div class="tab-pane fade" id="sanduiches">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+          <div class="card">
+            <h5>X-Bacon</h5>
+            <p>R$ 15,50</p>
+            <button class="btn btn-primary" onclick="addToCart('X-Bacon', 15.50)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>X-Burguer</h5>
+            <p>R$ 12,00</p>
+            <button class="btn btn-primary" onclick="addToCart('X-Burguer', 12.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>X-Salada</h5>
+            <p>R$ 13,50</p>
+            <button class="btn btn-primary" onclick="addToCart('X-Salada', 13.50)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>X-Tudo</h5>
+            <p>R$ 18,90</p>
+            <button class="btn btn-primary" onclick="addToCart('X-Tudo', 18.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lanches -->
+    <div class="tab-pane fade" id="lanches">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+          <div class="card">
+            <h5>Misto Quente</h5>
+            <p>R$ 8,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Misto Quente', 8.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Bauru</h5>
+            <p>R$ 10,50</p>
+            <button class="btn btn-primary" onclick="addToCart('Bauru', 10.50)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Hot Dog</h5>
+            <p>R$ 9,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Hot Dog', 9.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Americano</h5>
+            <p>R$ 12,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Americano', 12.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coxinhas -->
+    <div class="tab-pane fade" id="coxinhas">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+          <div class="card">
+            <h5>Coxinha de Frango</h5>
+            <p>R$ 7,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Coxinha de Frango', 7.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Coxinha de Catupiry</h5>
+            <p>R$ 7,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Coxinha de Catupiry', 7.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Coxinha de Camarão</h5>
+            <p>R$ 9,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Coxinha de Camarão', 9.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Coxinha de Carne</h5>
+            <p>R$ 7,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Coxinha de Carne', 7.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Petiscos -->
+    <div class="tab-pane fade" id="petiscos">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+          <div class="card">
+            <h5>Batata Frita</h5>
+            <p>R$ 15,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Batata Frita', 15.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Batata com Cheddar e Bacon</h5>
+            <p>R$ 22,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Batata c/ Cheddar e Bacon', 22.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Isca de Frango</h5>
+            <p>R$ 18,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Isca de Frango', 18.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Bolinhos de Queijo</h5>
+            <p>R$ 14,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Bolinhos de Queijo', 14.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bebidas -->
+    <div class="tab-pane fade" id="bebidas">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+          <div class="card">
+            <h5>Refrigerante Lata</h5>
+            <p>R$ 6,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Refrigerante Lata', 6.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Refrigerante 1L</h5>
+            <p>R$ 10,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Refrigerante 1L', 10.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Suco Natural 500ml</h5>
+            <p>R$ 8,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Suco Natural 500ml', 8.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Água Mineral 500ml</h5>
+            <p>R$ 4,00</p>
+            <button class="btn btn-primary" onclick="addToCart('Água Mineral 500ml', 4.00)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sobremesas -->
+    <div class="tab-pane fade" id="sobremesas">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+          <div class="card">
+            <h5>Pudim</h5>
+            <p>R$ 9,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Pudim', 9.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Mousse de Chocolate</h5>
+            <p>R$ 8,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Mousse de Chocolate', 8.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Brigadeiro</h5>
+            <p>R$ 5,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Brigadeiro', 5.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h5>Sorvete</h5>
+            <p>R$ 7,90</p>
+            <button class="btn btn-primary" onclick="addToCart('Sorvete', 7.90)">
+              <i class="bi bi-cart-plus me-1"></i>Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carrinho e Forma de Pagamento -->
+  <hr class="my-5" style="border-color: var(--secondary);">
+  <h3 class="text-center mb-4"><i class="bi bi-cart3 me-2"></i>Seu Pedido</h3>
+  <ul id="cartList" class="list-group mb-3">
+    <li class="list-group-item empty-cart">Seu carrinho está vazio</li>
+  </ul>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <p class="cart-total mb-0"><strong>Total: R$ <span id="cartTotal">0.00</span></strong></p>
+    <button class="btn btn-outline-danger" onclick="clearCart()">
+      <i class="bi bi-trash me-1"></i>Limpar Carrinho
+    </button>
+  </div>
+
+
+
+  <div class="payment-options mb-4">
+    <h4 class="mb-3"><i class="bi bi-person-lines-fill me-2"></i>Dados para Entrega</h4>
+    <div class="mb-3">
+      <label for="customerName" class="form-label">Nome*</label>
+      <input type="text" class="form-control" id="customerName" required>
+    </div>
+    <div class="mb-3">
+      <label for="customerPhone" class="form-label">Telefone*</label>
+      <input type="tel" class="form-control" id="customerPhone" required>
+    </div>
+    <div class="mb-3">
+      <label for="customerAddress" class="form-label">Endereço*</label>
+      <input type="text" class="form-control" id="customerAddress" required>
+    </div>
+    <div class="mb-3">
+      <label for="customerComplement" class="form-label">Complemento</label>
+      <input type="text" class="form-control" id="customerComplement" placeholder="Apto, bloco, referência...">
+    </div>
+  </div>
+
+  <!-- Forma de Pagamento -->
+  <div class="payment-options mb-4">
+    <h4 class="mb-3"><i class="bi bi-credit-card me-2"></i>Forma de Pagamento</h4>
+    <div class="form-check mb-2">
+      <input class="form-check-input" type="radio" name="paymentMethod" id="pix" value="PIX" checked>
+      <label class="form-check-label" for="pix">
+        PIX
+      </label>
+    </div>
+    <div class="form-check mb-2">
+      <input class="form-check-input" type="radio" name="paymentMethod" id="debito" value="Cartão de Débito">
+      <label class="form-check-label" for="debito">
+        Cartão de Débito
+      </label>
+    </div>
+    <div class="form-check mb-2">
+      <input class="form-check-input" type="radio" name="paymentMethod" id="credito" value="Cartão de Crédito">
+      <label class="form-check-label" for="credito">
+        Cartão de Crédito
+      </label>
+    </div>
+    <div class="form-check mb-2">
+      <input class="form-check-input" type="radio" name="paymentMethod" id="dinheiro" value="Dinheiro">
+      <label class="form-check-label" for="dinheiro">
+        Dinheiro
+      </label>
+    </div>
+    <div id="trocoField" class="mt-3" style="display: none;">
+      <label for="trocoPara" class="form-label">Troco para quanto?</label>
+      <input type="number" class="form-control" id="trocoPara" placeholder="Digite o valor">
+    </div>
+  </div>
+
+  <div class="text-center">
+    <a id="whatsappBtn" class="btn btn-success btn-lg disabled" target="_blank">
+      <i class="bi bi-whatsapp me-2"></i>Finalizar Pedido
+    </a>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="script.js"></script>
+<script>
+  // Scroll suave para links internos
+  // Scroll suave para links internos
+
+</script>
+</body>
+</html>
