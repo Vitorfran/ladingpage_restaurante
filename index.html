@@ -58,58 +58,250 @@
   <div class="tab-content mt-4">
 
     <!-- Pizzas -->
+    
     <div class="tab-pane fade show active" id="pizzas">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Pizza Mussarela -->
         <div class="col">
           <div class="card">
             <h5>Mussarela</h5>
             <p>R$ 34,90</p>
-            <button class="btn btn-primary" onclick="addToCart('Pizza Mussarela', 34.90)">
+            
+            <div class="mb-3">
+              <label class="form-label">Tamanho:</label>
+              <select class="form-select size-select">
+                <option value="P">Pequena (+R$0)</option>
+                <option value="M" selected>Média (+R$5)</option>
+                <option value="G">Grande (+R$10)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Sabores:</label>
+              <select class="form-select flavor-select">
+                <option value="1">1 Sabor</option>
+                <option value="2">2 Sabores (adicione outro sabor abaixo)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3 second-flavor" style="display:none;">
+              <label class="form-label">Segundo Sabor:</label>
+              <select class="form-select second-flavor-select">
+                <option value="">Selecione...</option>
+                <option value="Calabresa">Calabresa</option>
+                <option value="Frango com Catupiry">Frango com Catupiry</option>
+                <option value="Quatro Queijos">Quatro Queijos</option>
+                <option value="Portuguesa">Portuguesa</option>
+                <option value="Margherita">Margherita</option>
+              </select>
+            </div>
+            
+            <button class="btn btn-primary" onclick="addPizzaToCart('Mussarela', 34.90, this)">
               <i class="bi bi-cart-plus me-1"></i>Adicionar
             </button>
           </div>
         </div>
+        
+        <!-- Pizza Calabresa -->
         <div class="col">
           <div class="card">
             <h5>Calabresa</h5>
             <p>R$ 34,90</p>
-            <button class="btn btn-primary" onclick="addToCart('Pizza Calabresa', 34.90)">
+            
+            <div class="mb-3">
+              <label class="form-label">Tamanho:</label>
+              <select class="form-select size-select">
+                <option value="P">Pequena (+R$0)</option>
+                <option value="M" selected>Média (+R$5)</option>
+                <option value="G">Grande (+R$10)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Sabores:</label>
+              <select class="form-select flavor-select">
+                <option value="1">1 Sabor</option>
+                <option value="2">2 Sabores (adicione outro sabor abaixo)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3 second-flavor" style="display:none;">
+              <label class="form-label">Segundo Sabor:</label>
+              <select class="form-select second-flavor-select">
+                <option value="">Selecione...</option>
+                <option value="Mussarela">Mussarela</option>
+                <option value="Frango com Catupiry">Frango com Catupiry</option>
+                <option value="Quatro Queijos">Quatro Queijos</option>
+                <option value="Portuguesa">Portuguesa</option>
+                <option value="Margherita">Margherita</option>
+              </select>
+            </div>
+            
+            <button class="btn btn-primary" onclick="addPizzaToCart('Calabresa', 34.90, this)">
               <i class="bi bi-cart-plus me-1"></i>Adicionar
             </button>
           </div>
         </div>
+        
+        <!-- Pizza Frango com Catupiry -->
         <div class="col">
           <div class="card">
             <h5>Frango com Catupiry</h5>
             <p>R$ 39,90</p>
-            <button class="btn btn-primary" onclick="addToCart('Pizza Frango c/ Catupiry', 39.90)">
+            
+            <div class="mb-3">
+              <label class="form-label">Tamanho:</label>
+              <select class="form-select size-select">
+                <option value="P">Pequena (+R$0)</option>
+                <option value="M" selected>Média (+R$5)</option>
+                <option value="G">Grande (+R$10)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Sabores:</label>
+              <select class="form-select flavor-select">
+                <option value="1">1 Sabor</option>
+                <option value="2">2 Sabores (adicione outro sabor abaixo)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3 second-flavor" style="display:none;">
+              <label class="form-label">Segundo Sabor:</label>
+              <select class="form-select second-flavor-select">
+                <option value="">Selecione...</option>
+                <option value="Mussarela">Mussarela</option>
+                <option value="Calabresa">Calabresa</option>
+                <option value="Quatro Queijos">Quatro Queijos</option>
+                <option value="Portuguesa">Portuguesa</option>
+                <option value="Margherita">Margherita</option>
+              </select>
+            </div>
+            
+            <button class="btn btn-primary" onclick="addPizzaToCart('Frango com Catupiry', 39.90, this)">
               <i class="bi bi-cart-plus me-1"></i>Adicionar
             </button>
           </div>
         </div>
+        
+        <!-- Pizza Quatro Queijos -->
         <div class="col">
           <div class="card">
             <h5>Quatro Queijos</h5>
             <p>R$ 44,90</p>
-            <button class="btn btn-primary" onclick="addToCart('Pizza Quatro Queijos', 44.90)">
+            
+            <div class="mb-3">
+              <label class="form-label">Tamanho:</label>
+              <select class="form-select size-select">
+                <option value="P">Pequena (+R$0)</option>
+                <option value="M" selected>Média (+R$5)</option>
+                <option value="G">Grande (+R$10)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Sabores:</label>
+              <select class="form-select flavor-select">
+                <option value="1">1 Sabor</option>
+                <option value="2">2 Sabores (adicione outro sabor abaixo)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3 second-flavor" style="display:none;">
+              <label class="form-label">Segundo Sabor:</label>
+              <select class="form-select second-flavor-select">
+                <option value="">Selecione...</option>
+                <option value="Mussarela">Mussarela</option>
+                <option value="Calabresa">Calabresa</option>
+                <option value="Frango com Catupiry">Frango com Catupiry</option>
+                <option value="Portuguesa">Portuguesa</option>
+                <option value="Margherita">Margherita</option>
+              </select>
+            </div>
+            
+            <button class="btn btn-primary" onclick="addPizzaToCart('Quatro Queijos', 44.90, this)">
               <i class="bi bi-cart-plus me-1"></i>Adicionar
             </button>
           </div>
         </div>
+        
+        <!-- Pizza Portuguesa -->
         <div class="col">
           <div class="card">
             <h5>Portuguesa</h5>
             <p>R$ 42,90</p>
-            <button class="btn btn-primary" onclick="addToCart('Pizza Portuguesa', 42.90)">
+            
+            <div class="mb-3">
+              <label class="form-label">Tamanho:</label>
+              <select class="form-select size-select">
+                <option value="P">Pequena (+R$0)</option>
+                <option value="M" selected>Média (+R$5)</option>
+                <option value="G">Grande (+R$10)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Sabores:</label>
+              <select class="form-select flavor-select">
+                <option value="1">1 Sabor</option>
+                <option value="2">2 Sabores (adicione outro sabor abaixo)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3 second-flavor" style="display:none;">
+              <label class="form-label">Segundo Sabor:</label>
+              <select class="form-select second-flavor-select">
+                <option value="">Selecione...</option>
+                <option value="Mussarela">Mussarela</option>
+                <option value="Calabresa">Calabresa</option>
+                <option value="Frango com Catupiry">Frango com Catupiry</option>
+                <option value="Quatro Queijos">Quatro Queijos</option>
+                <option value="Margherita">Margherita</option>
+              </select>
+            </div>
+            
+            <button class="btn btn-primary" onclick="addPizzaToCart('Portuguesa', 42.90, this)">
               <i class="bi bi-cart-plus me-1"></i>Adicionar
             </button>
           </div>
         </div>
+        
+        <!-- Pizza Margherita -->
         <div class="col">
           <div class="card">
             <h5>Margherita</h5>
             <p>R$ 38,90</p>
-            <button class="btn btn-primary" onclick="addToCart('Pizza Margherita', 38.90)">
+            
+            <div class="mb-3">
+              <label class="form-label">Tamanho:</label>
+              <select class="form-select size-select">
+                <option value="P">Pequena (+R$0)</option>
+                <option value="M" selected>Média (+R$5)</option>
+                <option value="G">Grande (+R$10)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Sabores:</label>
+              <select class="form-select flavor-select">
+                <option value="1">1 Sabor</option>
+                <option value="2">2 Sabores (adicione outro sabor abaixo)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3 second-flavor" style="display:none;">
+              <label class="form-label">Segundo Sabor:</label>
+              <select class="form-select second-flavor-select">
+                <option value="">Selecione...</option>
+                <option value="Mussarela">Mussarela</option>
+                <option value="Calabresa">Calabresa</option>
+                <option value="Frango com Catupiry">Frango com Catupiry</option>
+                <option value="Quatro Queijos">Quatro Queijos</option>
+                <option value="Portuguesa">Portuguesa</option>
+              </select>
+            </div>
+            
+            <button class="btn btn-primary" onclick="addPizzaToCart('Margherita', 38.90, this)">
               <i class="bi bi-cart-plus me-1"></i>Adicionar
             </button>
           </div>
