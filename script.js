@@ -189,7 +189,7 @@ async function enviarPedidoParaAPI() {
   };
 
   try {
-    const response = await fetch('http://localhost:5000/api/pedidos', {
+    const response = await fetch('https://seu-app-vercel.vercel.app/api/pedidos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
