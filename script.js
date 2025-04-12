@@ -189,7 +189,7 @@ async function enviarPedidoParaAPI() {
   };
 
   try {
-    const API_URL = "https://ladingpage-restaurante-6d1pj1l6x-vitors-projects-63c46898.vercel.app/api/pedidos";
+    const API_URL = "https://ladingpage-restaurante-one.vercel.app/";
     console.log("Enviando pedido para:", API_URL, pedidoData);
 
     const response = await fetch(API_URL, {
