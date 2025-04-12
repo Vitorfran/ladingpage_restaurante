@@ -152,7 +152,7 @@ function getTamanhoName(tamanho) {
 }
 
 // ==============================================
-// FUNÇÕES DE INTEGRAÇÃO
+// FUNÇÕES DE INTEGRAÇÃO - VERSÃO VERCEL
 // ==============================================
 
 async function enviarPedidoParaAPI() {
@@ -189,22 +189,33 @@ async function enviarPedidoParaAPI() {
   };
 
   try {
-    const response = await fetch('https://seu-app-vercel.vercel.app/api/pedidos', {
+    const API_URL = "https://ladingpage-restaurante-6d1pj1l6x-vitors-projects-63c46898.vercel.app/api/pedidos";
+    console.log("Enviando pedido para:", API_URL, pedidoData);
+
+    const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
       body: JSON.stringify(pedidoData)
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || 'Erro ao enviar pedido');
+      const errorText = await response.text();
+      throw new Error(`Erro ${response.status}: ${errorText}`);
     }
 
-    return await response.json();
+    const responseData = await response.json();
+    console.log("Resposta da API:", responseData);
+    return responseData;
+
   } catch (error) {
-    console.error('Erro na API:', error);
+    console.error('Falha na comunicação com a API:', {
+      error: error.message,
+      endpoint: API_URL,
+      data: pedidoData
+    });
     throw error;
   }
 }
@@ -321,7 +332,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const msg = montarMensagemWhatsApp();
       window.location.href = `https://wa.me/558199862307?text=${encodeURIComponent(msg)}`;
     } catch (error) {
-      const shouldContinue = confirm(`${error.message}\nDeseja enviar diretamente pelo WhatsApp?`);
+      console.error("Erro completo:", error);
+      const shouldContinue = confirm(`${error.message}\nDeseja enviar diretamente pelo WhatsApp mesmo assim?`);
       if (shouldContinue) {
         const msg = montarMensagemWhatsApp();
         window.location.href = `https://wa.me/558199862307?text=${encodeURIComponent(msg)}`;
