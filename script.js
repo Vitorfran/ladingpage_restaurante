@@ -160,6 +160,7 @@ function montarMensagemWhatsApp() {
   const tel = document.getElementById('customerPhone')?.value || '';
   const endereco = document.getElementById('customerAddress')?.value || '';
   const complemento = document.getElementById('customerComplement')?.value || '';
+  const observacoes = document.getElementById('customerobservation')?.value || '';
   const pagamento = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'Não informado';
   const troco = document.getElementById('trocoPara')?.value || '';
   const isRetirada = document.getElementById('retiradaCheckbox').checked;
@@ -181,6 +182,10 @@ function montarMensagemWhatsApp() {
     if (complemento) msg += `Complemento: ${complemento}\n`;
   }
   
+  if (observacoes) {
+    msg += `Observações: ${observacoes}\n`;
+  }
+
   msg += `\n*Tipo de Entrega:* ${isRetirada ? 'Retirada' : 'Delivery'}\n`;
   msg += `*Pagamento:* ${pagamento}\n`;
   
