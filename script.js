@@ -152,73 +152,8 @@ function getTamanhoName(tamanho) {
 }
 
 // ==============================================
-// FUNÇÕES DE INTEGRAÇÃO - VERSÃO VERCEL
+// FUNÇÃO PARA MONTAR MENSAGEM DO WHATSAPP
 // ==============================================
-
-async function enviarPedidoParaAPI() {
-  const nome = document.getElementById('customerName').value;
-  const tel = document.getElementById('customerPhone')?.value || '';
-  const endereco = document.getElementById('customerAddress')?.value || '';
-  const complemento = document.getElementById('customerComplement')?.value || '';
-  const pagamento = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'Não informado';
-  const troco = document.getElementById('trocoPara')?.value || '';
-  const isRetirada = document.getElementById('retiradaCheckbox').checked;
-
-  if (!nome || (!isRetirada && (!tel || !endereco))) {
-    throw new Error('Dados do cliente incompletos');
-  }
-
-  const itensPedido = cart.map(item => ({
-    produto: item.item,
-    preco: item.price,
-    ...(item.tamanho && { tamanho: item.tamanho }),
-    ...(item.sabores?.length > 0 && { sabores: item.sabores })
-  }));
-
-  const total = parseFloat(document.getElementById("cartTotal").textContent);
-
-  const pedidoData = {
-    cliente: nome,
-    telefone: tel,
-    endereco: isRetirada ? "Retirada no local" : `${endereco} ${complemento}`.trim(),
-    itens: itensPedido,
-    total: total,
-    forma_pagamento: pagamento,
-    ...(pagamento === 'Dinheiro' && troco && { troco_para: parseFloat(troco) }),
-    data: new Date().toISOString()
-  };
-
-  try {
-    const API_URL = "https://ladingpage-restaurante-one.vercel.app/";
-    console.log("Enviando pedido para:", API_URL, pedidoData);
-
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(pedidoData)
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Erro ${response.status}: ${errorText}`);
-    }
-
-    const responseData = await response.json();
-    console.log("Resposta da API:", responseData);
-    return responseData;
-
-  } catch (error) {
-    console.error('Falha na comunicação com a API:', {
-      error: error.message,
-      endpoint: API_URL,
-      data: pedidoData
-    });
-    throw error;
-  }
-}
 
 function montarMensagemWhatsApp() {
   const nome = document.getElementById('customerName').value;
@@ -311,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  document.getElementById('whatsappBtn').addEventListener('click', async function(e) {
+  document.getElementById('whatsappBtn').addEventListener('click', function(e) {
     e.preventDefault();
     
     if (cart.length === 0) {
@@ -323,25 +258,8 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     
-    const btn = this;
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processando...';
-    btn.disabled = true;
-    
-    try {
-      await enviarPedidoParaAPI();
-      const msg = montarMensagemWhatsApp();
-      window.location.href = `https://wa.me/558199862307?text=${encodeURIComponent(msg)}`;
-    } catch (error) {
-      console.error("Erro completo:", error);
-      const shouldContinue = confirm(`${error.message}\nDeseja enviar diretamente pelo WhatsApp mesmo assim?`);
-      if (shouldContinue) {
-        const msg = montarMensagemWhatsApp();
-        window.location.href = `https://wa.me/558199862307?text=${encodeURIComponent(msg)}`;
-      }
-    } finally {
-      btn.innerHTML = '<i class="bi bi-whatsapp"></i> Enviar pedido';
-      btn.disabled = false;
-    }
+    const msg = montarMensagemWhatsApp();
+    window.location.href = `https://wa.me/558199862307?text=${encodeURIComponent(msg)}`;
   });
 
   toggleEnderecoFields();
