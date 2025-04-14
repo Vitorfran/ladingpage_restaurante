@@ -156,48 +156,70 @@ function getTamanhoName(tamanho) {
 // ==============================================
 
 function montarMensagemWhatsApp() {
-  const nome = document.getElementById('customerName').value;
-  const tel = document.getElementById('customerPhone')?.value || '';
-  const endereco = document.getElementById('customerAddress')?.value || '';
-  const complemento = document.getElementById('customerComplement')?.value || '';
-  const observacoes = document.getElementById('customerobservation')?.value || '';
-  const pagamento = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'Não informado';
-  const troco = document.getElementById('trocoPara')?.value || '';
+  // Dados obrigatórios
+  const nome = document.getElementById('customerName').value.trim();
   const isRetirada = document.getElementById('retiradaCheckbox').checked;
+  
+  // Dados condicionais
+  const tel = isRetirada ? '' : document.getElementById('customerPhone').value.trim();
+  const endereco = isRetirada ? '' : document.getElementById('customerAddress').value.trim();
+  const complemento = isRetirada ? '' : document.getElementById('customerComplement')?.value.trim() || '';
+  
+  // Dados opcionais
+  const observacoes = document.getElementById('customerObservations')?.value.trim() || '';
+  const pagamento = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'Não informado';
+  const troco = pagamento === 'Dinheiro' ? document.getElementById('trocoPara').value.trim() : '';
 
+  // Validações básicas
+  if (!nome) {
+    alert('Por favor, informe seu nome');
+    return false;
+  }
+
+  if (!isRetirada) {
+    if (!tel) {
+      alert('Por favor, informe seu telefone');
+      return false;
+    }
+    if (!endereco) {
+      alert('Por favor, informe o endereço de entrega');
+      return false;
+    }
+  }
+
+  // Montagem da mensagem
   let msg = "🍕 *PEDIDO PIZZARIA* 🍕\n\n";
   msg += "*Itens do Pedido:*\n";
   
   cart.forEach((item, index) => {
-    msg += `${index + 1}. ${item.item} - R$ ${item.price.toFixed(2)}\n`;
+    msg += `➡ ${item.item} - R$ ${item.price.toFixed(2)}\n`;
   });
 
-  msg += `\n*Total:* R$ ${parseFloat(document.getElementById("cartTotal").textContent)}\n\n`;
+  msg += `\n*Total: R$ ${parseFloat(document.getElementById("cartTotal").textContent)}*\n\n`;
   msg += "*Dados do Cliente:*\n";
-  msg += `Nome: ${nome}\n`;
+  msg += `👤 Nome: ${nome}\n`;
   
   if (!isRetirada) {
-    msg += `Telefone: ${tel}\n`;
-    msg += `Endereço: ${endereco}\n`;
-    if (complemento) msg += `Complemento: ${complemento}\n`;
+    msg += `📞 Telefone: ${tel}\n`;
+    msg += `🏠 Endereço: ${endereco}\n`;
+    if (complemento) msg += `🔹 Complemento: ${complemento}\n`;
   }
   
   if (observacoes) {
-    msg += `Observações: ${observacoes}\n`;
+    msg += `📝 Observações: ${observacoes}\n`;
   }
 
-  msg += `\n*Tipo de Entrega:* ${isRetirada ? 'Retirada' : 'Delivery'}\n`;
-  msg += `*Pagamento:* ${pagamento}\n`;
+  msg += `\n*Entrega:* ${isRetirada ? '🛵 RETIRADA NO LOCAL' : '🚚 DELIVERY'}\n`;
+  msg += `*Pagamento:* ${pagamento === 'Dinheiro' ? '💵 Dinheiro' : pagamento === 'Cartão' ? '💳 Cartão' : '❓ Não informado'}\n`;
   
   if (pagamento === 'Dinheiro' && troco) {
-    msg += `Troco para: R$ ${parseFloat(troco).toFixed(2)}\n`;
+    msg += `💰 Troco para: R$ ${parseFloat(troco).toFixed(2)}\n`;
   }
   
-  msg += "\nObrigado pelo pedido!";
+  msg += "\nAgradecemos pela preferência! 🍕";
 
   return msg;
 }
-
 // ==============================================
 // FUNÇÕES DE VALIDAÇÃO
 // ==============================================
