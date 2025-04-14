@@ -15,11 +15,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 mb-4 mb-lg-0">
           <div class="position-relative">
-            <img src="img/promo.png" alt="Imagem de destaque" class="img-fluid rounded shadow-lg">
-            <div class="position-absolute bottom-0 start-0 p-3 m-3 rounded promo-badge">
-              <h4 class="mb-0">Promoção Especial</h4>
-              <p class="mb-0 small">Todos os dias até as 19h</p>
-            </div>
+            <img src="/img/logo.png" alt="Imagem de destaque" class="img-fluid rounded shadow-lg">
           </div>
         </div>
         <div class="col-lg-6">
@@ -32,14 +28,62 @@
             <span class="intro-badge"><i class="bi bi-clock-fill me-2"></i>Rápido Atendimento</span>
             <span class="intro-badge"><i class="bi bi-coin me-2"></i>Preços Acessíveis</span>
           </div>
-          <a href="#cardapio" class="btn btn-primary btn-lg px-4">
-            <i class="bi bi-menu-up me-2"></i>Ver Cardápio
-          </a>
+          
+          <div class="d-flex flex-wrap align-items-center gap-3">
+            <a href="#cardapio" class="btn btn-primary btn-lg px-4">
+              <i class="bi bi-menu-up me-2"></i>Ver Cardápio
+            </a>
+            
+            <!-- Botão Instagram integrado -->
+            <a href="https://www.instagram.com/garotinhalanchonete/" target="_blank" class="btn btn-outline-instagram btn-lg">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png" 
+                   alt="Instagram"
+                   style="width: 20px; height: 20px; margin-right: 8px;">
+              @garotinhalanchonete
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <div class="col" id="cardPromocaoPizza" style="display: none;">
+    <div class="card position-relative border-danger">
+      <!-- Tag de PROMOÇÃO -->
+      <span class="position-absolute top-0 start-0 translate-middle-y badge bg-danger fs-6 ms-2">
+        <i class="bi bi-lightning-charge"></i> PROMOÇÃO
+      </span>
+      
+      <div class="text-center mt-3">
+        <img src="/img/pizzaCalabresa.jpg" 
+             alt="Pizza da Promoção" 
+             class="rounded-circle border border-3 border-danger"
+             style="width: 120px; height: 120px; object-fit: cover;">
+      </div>
+      
+      <h5 class="text-danger mt-2">Pizza Promo</h5>
+      <p class="mb-1">Segunda a Sexta</p>
+      <p class="fs-5"><span class="text-decoration-line-through text-muted">R$ 49,90</span> 
+         <strong class="text-danger">R$ 34,90</strong></p>
+      
+      <div class="mb-3">
+        <label class="form-label">Tamanho:</label>
+        <select class="form-select size-select">
+          <option value="P">Pequena</option>
+          <option value="M" selected>Média (+R$5)</option>
+          <option value="G">Grande (+R$10)</option>
+        </select>
+      </div>
+      
+      <button class="btn btn-danger fw-bold" onclick="addPizzaToCart('Pizza Promo', 34.90, this)">
+        <i class="bi bi-cart-plus me-1"></i> Levar Promoção
+      </button>
+      
+      <small class="d-block text-center text-muted mt-2">
+        <i class="bi bi-info-circle"></i> Válida apenas hoje (<span id="diaAtualPromo"></span>)
+      </small>
+    </div>
+  </div>
 <div class="container py-4" id="cardapio">
   <h1 class="text-center mb-4"><i class="bi bi-menu-button-wide me-2"></i>Cardápio Digital</h1>
 
@@ -54,6 +98,7 @@
     <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#sobremesas"><i class="bi bi-cake me-2"></i>Sobremesas</button></li>
   </ul>
 
+
   <!-- Conteúdo das abas -->
   <div class="tab-content mt-4">
 
@@ -64,8 +109,16 @@
         <!-- Pizza Mussarela -->
         <div class="col">
           <div class="card">
+
+            <div class="text-center mt-3">
+              <img src="/img/pizzaMussarela.jpeg" 
+                   alt="Pizza Mussarela" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
             <h5>Mussarela</h5>
             <p>R$ 34,90</p>
+
             
             <div class="mb-3">
               <label class="form-label">Tamanho:</label>
@@ -105,6 +158,12 @@
         <!-- Pizza Calabresa -->
         <div class="col">
           <div class="card">
+            <div class="text-center mt-3">
+              <img src="/img/pizzaCalabresa.jpg" 
+                   alt="Pizza Calabresa" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
             <h5>Calabresa</h5>
             <p>R$ 34,90</p>
             
@@ -146,6 +205,12 @@
         <!-- Pizza Frango com Catupiry -->
         <div class="col">
           <div class="card">
+            <div class="text-center mt-3">
+              <img src="/img/pizzaFrangocomCatupiry.jpeg" 
+                   alt="Pizza Frango com Catupiry" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
             <h5>Frango com Catupiry</h5>
             <p>R$ 39,90</p>
             
@@ -187,6 +252,12 @@
         <!-- Pizza Quatro Queijos -->
         <div class="col">
           <div class="card">
+            <div class="text-center mt-3">
+              <img src="/img/pizzaQuatroqueijos.png" 
+                   alt="Pizza Quatro Queijos" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
             <h5>Quatro Queijos</h5>
             <p>R$ 44,90</p>
             
@@ -228,6 +299,12 @@
         <!-- Pizza Portuguesa -->
         <div class="col">
           <div class="card">
+            <div class="text-center mt-3">
+              <img src="/img/pizzaPortuguesa.jpg" 
+                   alt="Pizza Portuguesa" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
             <h5>Portuguesa</h5>
             <p>R$ 42,90</p>
             
@@ -271,7 +348,12 @@
           <div class="card">
             <h5>Margherita</h5>
             <p>R$ 38,90</p>
-            
+            <div class="text-center mt-3">
+              <img src="/img/pizzaMarguerita.jpeg" 
+                   alt="Pizza Margherita" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
             <div class="mb-3">
               <label class="form-label">Tamanho:</label>
               <select class="form-select size-select">
@@ -308,49 +390,90 @@
         </div>
       </div>
     </div>
-
     <!-- Sanduíches -->
     <div class="tab-pane fade" id="sanduiches">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- X-Bacon -->
         <div class="col">
-          <div class="card">
-            <h5>X-Bacon</h5>
-            <p>R$ 15,50</p>
-            <button class="btn btn-primary" onclick="addToCart('X-Bacon', 15.50)">
-              <i class="bi bi-cart-plus me-1"></i>Adicionar
-            </button>
+          <div class="card h-100">
+            <div class="text-center mt-3">
+              <img src="/img/fotosSanduiches/Xbacon.jpeg" 
+                   alt="X-Bacon" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
+            <div class="card-body text-center">
+              <h5>X-Bacon</h5>
+              <p class="text-muted">Pão, hambúrguer, bacon, queijo e molho especial</p>
+              <p class="fs-5 fw-bold">R$ 15,50</p>
+              <button class="btn btn-primary" onclick="addToCart('X-Bacon', 15.50)">
+                <i class="bi bi-cart-plus me-1"></i>Adicionar
+              </button>
+            </div>
           </div>
         </div>
+    
+        <!-- X-Burguer -->
         <div class="col">
-          <div class="card">
-            <h5>X-Burguer</h5>
-            <p>R$ 12,00</p>
-            <button class="btn btn-primary" onclick="addToCart('X-Burguer', 12.00)">
-              <i class="bi bi-cart-plus me-1"></i>Adicionar
-            </button>
+          <div class="card h-100">
+            <div class="text-center mt-3">
+              <img src="/img//fotosSanduiches/Xburguer.jpg" 
+                   alt="X-Burguer" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
+            <div class="card-body text-center">
+              <h5>X-Burguer</h5>
+              <p class="text-muted">Pão, hambúrguer, queijo e molho especial</p>
+              <p class="fs-5 fw-bold">R$ 12,00</p>
+              <button class="btn btn-primary" onclick="addToCart('X-Burguer', 12.00)">
+                <i class="bi bi-cart-plus me-1"></i>Adicionar
+              </button>
+            </div>
           </div>
         </div>
+    
+        <!-- X-Salada -->
         <div class="col">
-          <div class="card">
-            <h5>X-Salada</h5>
-            <p>R$ 13,50</p>
-            <button class="btn btn-primary" onclick="addToCart('X-Salada', 13.50)">
-              <i class="bi bi-cart-plus me-1"></i>Adicionar
-            </button>
+          <div class="card h-100">
+            <div class="text-center mt-3">
+              <img src="/img//fotosSanduiches/Xsalada.jpeg" 
+                   alt="X-Salada" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
+            <div class="card-body text-center">
+              <h5>X-Salada</h5>
+              <p class="text-muted">Pão, hambúrguer, queijo, alface, tomate e maionese</p>
+              <p class="fs-5 fw-bold">R$ 13,50</p>
+              <button class="btn btn-primary" onclick="addToCart('X-Salada', 13.50)">
+                <i class="bi bi-cart-plus me-1"></i>Adicionar
+              </button>
+            </div>
           </div>
         </div>
+    
+        <!-- X-Tudo -->
         <div class="col">
-          <div class="card">
-            <h5>X-Tudo</h5>
-            <p>R$ 18,90</p>
-            <button class="btn btn-primary" onclick="addToCart('X-Tudo', 18.90)">
-              <i class="bi bi-cart-plus me-1"></i>Adicionar
-            </button>
+          <div class="card h-100">
+            <div class="text-center mt-3">
+              <img src="/img//fotosSanduiches/Xtudo.jpg" 
+                   alt="X-Tudo" 
+                   class="rounded-circle border border-3 border-warning"
+                   style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
+            <div class="card-body text-center">
+              <h5>X-Tudo</h5>
+              <p class="text-muted">Pão, 2 hambúrgueres, bacon, queijo, ovo, alface, tomate e molhos</p>
+              <p class="fs-5 fw-bold">R$ 18,90</p>
+              <button class="btn btn-primary" onclick="addToCart('X-Tudo', 18.90)">
+                <i class="bi bi-cart-plus me-1"></i>Adicionar
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Lanches -->
     <div class="tab-pane fade" id="lanches">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">

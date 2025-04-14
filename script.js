@@ -291,3 +291,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   toggleEnderecoFields();
 });
+
+// Verifica o dia da semana
+document.addEventListener('DOMContentLoaded', function() {
+  const cardPromocao = document.getElementById('cardPromocaoPizza');
+  const diaAtualPromo = document.getElementById('diaAtualPromo');
+  
+  const hoje = new Date();
+  const diaSemana = hoje.getDay(); // 0=Domingo, 1=Segunda, ..., 6=Sábado
+  const dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+  
+  diaAtualPromo.textContent = dias[diaSemana];
+  
+  // Se for Segunda (1) a Sexta (5), mostra o card
+  if(diaSemana >= 1 && diaSemana <= 5) {
+    cardPromocao.style.display = 'block';
+    
+    // Opcional: Destaque especial se for Quarta-feira (dia 3)
+    if(diaSemana === 3) {
+      cardPromocao.querySelector('.card').classList.add('shadow-lg');
+      cardPromocao.querySelector('h5').innerHTML = 'Pizza Promo <span class="badge bg-warning text-dark ms-1">Quarta Maluca!</span>';
+    }
+  }
+});
