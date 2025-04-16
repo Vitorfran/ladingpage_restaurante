@@ -56,9 +56,10 @@ function addToCart(item, price, tamanho = null, sabores = [], event = null) {
 
 function addPizzaToCart(nomePizza, precoBase, buttonElement) {
   const card = buttonElement.closest('.card');
-  const tamanho = card.querySelector('.size-select').value;
-  const isDoisSabores = card.querySelector('.flavor-select').value === '2';
-  const segundoSabor = isDoisSabores ? card.querySelector('.second-flavor-select').value : null;
+  const tamanho = card.querySelector('.size-select')?.value || 'M';
+  const flavorSelect = card.querySelector('.flavor-select');
+  const isDoisSabores = flavorSelect ? flavorSelect.value === '2' : false;
+  const segundoSabor = isDoisSabores ? card.querySelector('.second-flavor-select')?.value : null;
 
   if (isDoisSabores && !segundoSabor) {
     alert('Por favor, selecione o segundo sabor');
@@ -66,10 +67,9 @@ function addPizzaToCart(nomePizza, precoBase, buttonElement) {
   }
 
   let precoFinal = parseFloat(precoBase);
-  
   if (tamanho === 'M') precoFinal += 5;
   else if (tamanho === 'G') precoFinal += 10;
-  
+
   if (isDoisSabores && segundoSabor) {
     const precos = {
       'Mussarela': 34.90,
@@ -88,12 +88,12 @@ function addPizzaToCart(nomePizza, precoBase, buttonElement) {
 
   let descricao = `Pizza ${nomePizza}`;
   const sabores = [nomePizza];
-  
+
   if (isDoisSabores) {
     descricao += ` + ${segundoSabor}`;
     sabores.push(segundoSabor);
   }
-  
+
   descricao += ` (${nomeTamanho})`;
 
   addToCart(descricao, precoFinal, tamanho, sabores, window.event);
@@ -167,7 +167,8 @@ function montarMensagemWhatsApp() {
   
   // Dados opcionais
   const observacoes = document.getElementById('customerObservations')?.value.trim() || '';
-  const pagamento = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'Não informado';
+  const pagamentoElement = document.querySelector('input[name="paymentMethod"]:checked');
+  const pagamento = pagamentoElement ? pagamentoElement.value : 'Não informado';
   const troco = pagamento === 'Dinheiro' ? document.getElementById('trocoPara').value.trim() : '';
 
   // Validações básicas
@@ -191,11 +192,12 @@ function montarMensagemWhatsApp() {
   let msg = "🍕 *PEDIDO PIZZARIA* 🍕\n\n";
   msg += "*Itens do Pedido:*\n";
   
-  cart.forEach((item, index) => {
+  cart.forEach((item) => {
     msg += `➡ ${item.item} - R$ ${item.price.toFixed(2)}\n`;
   });
 
-  msg += `\n*Total: R$ ${parseFloat(document.getElementById("cartTotal").textContent)}*\n\n`;
+  msg += `\n*Total: R$ ${parseFloat(document.getElementById("cartTotal").textContent).toFixed(2)}*\n\n`;
+
   msg += "*Dados do Cliente:*\n";
   msg += `👤 Nome: ${nome}\n`;
   
@@ -204,22 +206,34 @@ function montarMensagemWhatsApp() {
     msg += `🏠 Endereço: ${endereco}\n`;
     if (complemento) msg += `🔹 Complemento: ${complemento}\n`;
   }
-  
+
   if (observacoes) {
     msg += `📝 Observações: ${observacoes}\n`;
   }
 
   msg += `\n*Entrega:* ${isRetirada ? '🛵 RETIRADA NO LOCAL' : '🚚 DELIVERY'}\n`;
-  msg += `*Pagamento:* ${pagamento === 'Dinheiro' ? '💵 Dinheiro' : pagamento === 'Cartão' ? '💳 Cartão' : '❓ Não informado'}\n`;
-  
-  if (pagamento === 'Dinheiro' && troco) {
-    msg += `💰 Troco para: R$ ${parseFloat(troco).toFixed(2)}\n`;
+
+  // Forma de pagamento (corrigido para PIX maiúsculo)
+  switch (pagamento) {
+    case 'Dinheiro':
+      msg += `*Pagamento:* 💵 Dinheiro\n`;
+      if (troco) msg += `💰 Troco para: R$ ${parseFloat(troco).toFixed(2)}\n`;
+      break;
+    case 'Cartão':
+      msg += `*Pagamento:* 💳 Cartão\n`;
+      break;
+    case 'PIX':
+      msg += `*Pagamento:* 📲 Pix\n`;
+      break;
+    default:
+      msg += `*Pagamento:* ❓ Não informado\n`;
   }
-  
+
   msg += "\nAgradecemos pela preferência! 🍕";
 
   return msg;
 }
+
 // ==============================================
 // FUNÇÕES DE VALIDAÇÃO
 // ==============================================
@@ -258,6 +272,7 @@ function validarFormulario() {
 // ==============================================
 
 document.addEventListener('DOMContentLoaded', function() {
+  // Configura eventos
   document.getElementById('retiradaCheckbox').addEventListener('change', toggleEnderecoFields);
   
   document.querySelectorAll('input[name="paymentMethod"]').forEach(method => {
@@ -273,6 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Botão WhatsApp
   document.getElementById('whatsappBtn').addEventListener('click', function(e) {
     e.preventDefault();
     
@@ -286,31 +302,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     const msg = montarMensagemWhatsApp();
-    window.location.href = `https://wa.me/558199862307?text=${encodeURIComponent(msg)}`;
+    window.location.href = `https://wa.me/5581996025631?text=${encodeURIComponent(msg)}`;
   });
 
-  toggleEnderecoFields();
-});
-
-// Verifica o dia da semana
-document.addEventListener('DOMContentLoaded', function() {
+  // Promoção do dia
   const cardPromocao = document.getElementById('cardPromocaoPizza');
   const diaAtualPromo = document.getElementById('diaAtualPromo');
   
-  const hoje = new Date();
-  const diaSemana = hoje.getDay(); // 0=Domingo, 1=Segunda, ..., 6=Sábado
-  const dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-  
-  diaAtualPromo.textContent = dias[diaSemana];
-  
-  // Se for Segunda (1) a Sexta (5), mostra o card
-  if(diaSemana >= 1 && diaSemana <= 5) {
-    cardPromocao.style.display = 'block';
+  if (cardPromocao && diaAtualPromo) {
+    const hoje = new Date();
+    const diaSemana = hoje.getDay();
+    const dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
     
-    // Opcional: Destaque especial se for Quarta-feira (dia 3)
-    if(diaSemana === 3) {
-      cardPromocao.querySelector('.card').classList.add('shadow-lg');
-      cardPromocao.querySelector('h5').innerHTML = 'Pizza Promo <span class="badge bg-warning text-dark ms-1">Quarta Maluca!</span>';
+    diaAtualPromo.textContent = dias[diaSemana];
+    
+    if(diaSemana >= 1 && diaSemana <= 5) {
+      cardPromocao.style.display = 'block';
+      if(diaSemana === 3) {
+        cardPromocao.querySelector('.card').classList.add('shadow-lg');
+        cardPromocao.querySelector('h5').innerHTML = 'Pizza Promo <span class="badge bg-warning text-dark ms-1">Quarta Maluca!</span>';
+      }
     }
   }
+
+  // Inicializa campos
+  toggleEnderecoFields();
 });
